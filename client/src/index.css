@@ -104,6 +104,10 @@ img {
   width: 40px;
 }
 
+img:hover{
+  border-color: firebrick;
+}
+
 .cissa{
   border: 1px solid #ddd;
   border-radius: 4px;
