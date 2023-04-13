@@ -1,6 +1,20 @@
 // Sets up the express app
 const express = require("express");
+const cors = require("cors");
 const app = express();
+
+// Middleware
+app.use(express.json())
+app.use(
+  cors({
+    origin: [
+      "http://127.0.0.1:5173",
+      "http://127.0.0.1:5174",
+      "http://localhost:5173",
+      "http://localhost:5174",
+    ],
+  })
+);
 
 // Reads the .env file, which stores the OPEN_AI_API_KEY
 // Reference: https://www.npmjs.com/package/dotenv 
@@ -10,7 +24,7 @@ require("dotenv").config();
 const { Configuration, OpenAIApi } = require("openai");
 
 const configuration = new Configuration({
-  apiKey: process.env.OPENAI_API_KEY,
+  apiKey: process.env.OPEN_AI_API_KEY,
 });
 
 const MODEL = "gpt-3.5-turbo";
@@ -35,6 +49,12 @@ app.get("/user", (req, res) => {
 });
 // ========== EXAMPLE END ===========
 
+
+app.post("/test", (req, res) => {
+  console.log("hello world");
+  res.send("Hello World");
+})
+
 // POST request to Open AI chatgpt-3.5-turbo
 app.post("/prompt", async (req, res) => {
   const userPrompt = req.body.prompt; // Get's user's prompt/question
@@ -42,10 +62,10 @@ app.post("/prompt", async (req, res) => {
     User's prompt: ${userPrompt}.
     Answer the user's prompt exclusively in JSON format with following properties:
     {
-      ELI5: string,
-      Description: string,
-      Example: string,
-      Prerequisites: []
+      eli5: string,
+      description: string,
+      application: string,
+      prerequisites: []
     }
   `;
 
@@ -65,7 +85,7 @@ app.post("/prompt", async (req, res) => {
   // TODO: convert response into JSON and send it back to front-end
 
   console.log(promptResponse.data.choices[0].message);
-  res.status(200).send(promptResponse.data.choices[0].message);
+  res.status(200).send(JSON.stringify(promptResponse.data.choices[0].message.content));
 });
 
 app.listen(8080, () => {
