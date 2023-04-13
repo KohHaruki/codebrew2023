@@ -95,3 +95,25 @@ footer{
   margin-top: auto;
   text-align: left;
 }
+
+img {
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  padding: 5px;
+  height: 40px;
+  width: 40px;
+}
+
+.cissa{
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  padding: 5px;
+  height: 40px;
+  width: 100px;
+}
+
+.pages{
+  align-items: center;
+}
+
+
