@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <link rel="icon" type="image/svg+xml" href="/vite.svg" />
-    <link rel="stylesheet" href="src/index.css">
+    <link rel="stylesheet" type="text/css" href="src/index.css">
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Learn Smart</title>
   </head>
@@ -15,7 +15,27 @@
   <body>
     <div id="root"></div>
     <script type="module" src="/src/main.tsx"></script>
+
+    <div class="login-square">
+      <div class="login-content">
+        <span class="exit-button">&times;</span>
+        <h3>Login</h3>
+        <form>
+          <label for="username">Username:</label>
+          <input type="text" id="username" name="username" required>
+
+          <label for="password">Password:</label>
+          <input type="password" id="password" name="password" required>
+
+          <button type=""submit">Login</button>
+          <p>Not Registered? <a href="#">Create an Account</a></p>
+        </form>
+      </div>
+    </div>
+
   </body>
+
+
   <footer>
     Created: 13/4/2023  by:
   </footer>
