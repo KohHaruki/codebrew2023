@@ -1,17 +1,70 @@
 import { useState } from 'react'
 import Footer from '../components/Footer';
 import './Home.css'
+import { Configuration, ChatCompletionRequestMessage, ChatCompletionResponseMessageRoleEnum, ChatCompletionRequestMessageRoleEnum } from 'openai';
+import { SSE } from 'sse';
+// const SSE = require('sse');
 
 const Home = () => {
-
     const [questions, setQuestions] = useState<Array<string>>([]);
+    const [chatMessages, setChatMessages] = useState<Array<ChatCompletionRequestMessage>>([]);
     const [prompt, setPrompt] = useState<string>("");
+    const [answer, setAnswer] = useState<string>("");
+    const [isLoading, setIsLoading] = useState<boolean>(false);
+    const url = "http://localhost:8080/prompt"
 
     const handleClick = () => {
-        if (prompt) { // Only handles when prompt is non-empty, non-null etc
-            const newQuestions = [...questions, prompt];
-            setQuestions(newQuestions);
-        }
+        
+    }
+
+    // const handleClick = () => {
+    //     if (prompt) { // Only handles when prompt is non-empty, non-null etc
+    //         const newQuestions = [...questions, prompt];
+    //         setQuestions(newQuestions);
+
+    //         const newChatMessages = [...chatMessages, {role: ChatCompletionRequestMessageRoleEnum.User, content: prompt}];
+    //         setChatMessages(newChatMessages);
+
+    //         setIsLoading(true);
+
+    //         const eventSource = new SSE(url, {
+    //             headers: {
+    //                 'Content-Type': 'application/json',
+    //             },
+    //             payload: JSON.stringify({messages: chatMessages})
+    //         })
+
+    //         eventSource.addEventListener('error', handleError);
+
+    //         eventSource.addEventListener('message', (e) => {
+    //             try {
+    //                 setIsLoading(false);
+    //                 if (e.data === '[DONE]') {
+    //                     const newChatMessages = [...chatMessages, {role: ChatCompletionResponseMessageRoleEnum.Assistant, content: answer}];
+    //                     setChatMessages(newChatMessages);
+    //                     setAnswer('');
+    //                     return;
+    //                 }
+
+    //                 const completionResponse = JSON.parse(e.data);
+    //                 const [{ delta }] = completionResponse.choices;
+
+    //                 if (delta.content) {
+    //                     const newAnswer = (answer ?? '') + delta.content;
+    //                 }
+    //             } catch (err) {
+    //                 handleError(err);
+    //             }
+    //         })
+    //         eventSource.stream();
+    //     }
+    // }
+
+    const handleError = (err:any) => {
+        setIsLoading(false);
+        setPrompt('');
+        setAnswer('');
+        console.log(err);
     }
 
     const handlePromptChange = (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -25,7 +78,6 @@ const Home = () => {
             (event.target as HTMLInputElement).value = "";
         }
     }
-
 
     return (
         <div className="">
