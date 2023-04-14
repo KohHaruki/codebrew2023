@@ -46,7 +46,8 @@ app.post("/test", (req, res) => {
   res.send("Hello World");
 })
 
-app.post("/prompt", async (req, res) => {
+// Ignore this prompt0 endpoint, we'll just be using /prompt endpoint at the bottom of this file
+app.post("/prompt0", async (req, res) => {
   const url = "https://api.openai.com/v1/chat/completions";
   const userPrompt = req.body.prompt;
   const completePrompt = `Answer or explain the user's prompt or topic in the following format:
@@ -184,7 +185,7 @@ app.post("/prompt3", async (req, res) => {
 })
 
 // POST request to Open AI chatgpt-3.5-turbo
-app.post("/prompt2", async (req, res) => {
+app.post("/prompt", async (req, res) => {
   const userPrompt = req.body.prompt; // Get's user's prompt/question
   const completePrompt = `
     User's prompt: ${userPrompt}.
