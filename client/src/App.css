@@ -1,4 +1,25 @@
-#root {
+@import url('https://fonts.googleapis.com/css2?family=Manrope&family=Open+Sans:wght@300&family=Source+Sans+Pro&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Manrope&family=Open+Sans:wght@300&family=Roboto+Slab&family=Source+Sans+Pro&display=swap');
+
+* {
+  margin: 0;
+  padding: 0;
+}
+
+.container {
+  width: 1000px;
+  margin: auto;
+}
+
+body {
+  font-family: 'Roboto Slab', 'Manrope', 'Open Sans', sans-serif, serif;
+
+  /* background: #FDC830; 
+  background: -webkit-linear-gradient(to right, #F37335, #FDC830); 
+  background: linear-gradient(to right, #F37335, #FDC830); */
+}
+
+/* #root {
   max-width: 1280px;
   margin: 0 auto;
   padding: 2rem;
@@ -39,4 +60,4 @@
 
 .read-the-docs {
   color: #888;
-}
+} */
