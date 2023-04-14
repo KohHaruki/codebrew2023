@@ -4,7 +4,7 @@ interface StudyPlanAreaProps {
 }
 const StudyPlanArea = (props: StudyPlanAreaProps) => {
     return (
-        <div className={props.interestedTopics.length == 0 ? 'hidden' : 'visible'}>
+        <div className={(props.interestedTopics.length == 0 ? 'hidden' : 'visible') + " container"}>
             <h1>Interested topics:</h1>
             <div className="flex flex-wrap">
                 {
