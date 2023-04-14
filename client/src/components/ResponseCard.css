@@ -1,0 +1,16 @@
+.response-card-table > tr > td {
+    border-spacing: 1rem;
+    /* border: 2px solid black; */
+    font-weight: 300;
+}
+
+.response-card {
+    font-weight: 200;
+}
+
+.response-card-table > tbody > tr > .section-title,
+.response-card-table > thead > tr > .section-title {
+    font-weight: 400;
+    padding-top: 0;
+    vertical-align: top;
+}

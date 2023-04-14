@@ -1,6 +1,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Manrope&family=Open+Sans:wght@300&family=Source+Sans+Pro&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Manrope&family=Open+Sans:wght@300&family=Roboto+Slab&family=Source+Sans+Pro&display=swap');
-
+@import url('https://fonts.googleapis.com/css2?family=Manrope:wght@200;300;400;500;600&family=Open+Sans:wght@300&family=Roboto+Slab&family=Source+Sans+Pro&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Manrope:wght@200;300;400;500;600&family=Open+Sans:wght@300&family=Roboto+Slab:wght@100;200;300;400;500&family=Source+Sans+Pro&display=swap');
 * {
   margin: 0;
   padding: 0;
@@ -9,6 +10,7 @@
 .container {
   width: 1000px;
   margin: auto;
+  padding: 0 2rem;
 }
 
 body {
@@ -17,6 +19,30 @@ body {
   /* background: #FDC830; 
   background: -webkit-linear-gradient(to right, #F37335, #FDC830); 
   background: linear-gradient(to right, #F37335, #FDC830); */
+}
+
+.btn-grad {
+  /* background-image: linear-gradient(to right, #DA22FF 0%, #9733EE  51%, #DA22FF  100%); */
+  /* margin: 10px; */
+  /* padding: 15px 45px; */
+  background: #F7971E;  /* fallback for old browsers */
+  background: -webkit-linear-gradient(to right, #FFD200, #F7971E);  /* Chrome 10-25, Safari 5.1-6 */
+  background: linear-gradient(to right, #FFD200, #F7971E); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+
+  text-align: center;
+  text-transform: uppercase;
+  transition: 0.5s;
+  background-size: 200% auto;
+  color: white;            
+  /* box-shadow: 0 0 20px #eee; */
+  /* border-radius: 10px; */
+  display: block;
+}
+
+.btn-grad:hover {
+  background-position: right center; /* change the direction of the change here */
+  color: #fff;
+  text-decoration: none;
 }
 
 /* #root {
