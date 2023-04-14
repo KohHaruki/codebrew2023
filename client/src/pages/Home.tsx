@@ -2,70 +2,17 @@ import { useState } from 'react'
 import Footer from '../components/Footer';
 import './Home.css'
 import { Configuration, ChatCompletionRequestMessage, ChatCompletionResponseMessageRoleEnum, ChatCompletionRequestMessageRoleEnum } from 'openai';
-import { SSE } from 'sse';
-// const SSE = require('sse');
+import { ResponseCardProps } from '../components/ResponseCard';
 
-const Home = () => {
-    const [questions, setQuestions] = useState<Array<string>>([]);
-    const [chatMessages, setChatMessages] = useState<Array<ChatCompletionRequestMessage>>([]);
+interface HomeProps {
+    handleResponses: (response: ResponseCardProps) => void;
+    handlePromptSubmit: (prompt: string) => void;
+}
+
+const Home = (props: HomeProps) => {
     const [prompt, setPrompt] = useState<string>("");
-    const [answer, setAnswer] = useState<string>("");
+    const [chatMessages, setChatMessages] = useState<Array<ChatCompletionRequestMessage>>([]);
     const [isLoading, setIsLoading] = useState<boolean>(false);
-    const url = "http://localhost:8080/prompt"
-
-    const handleClick = () => {
-        
-    }
-
-    // const handleClick = () => {
-    //     if (prompt) { // Only handles when prompt is non-empty, non-null etc
-    //         const newQuestions = [...questions, prompt];
-    //         setQuestions(newQuestions);
-
-    //         const newChatMessages = [...chatMessages, {role: ChatCompletionRequestMessageRoleEnum.User, content: prompt}];
-    //         setChatMessages(newChatMessages);
-
-    //         setIsLoading(true);
-
-    //         const eventSource = new SSE(url, {
-    //             headers: {
-    //                 'Content-Type': 'application/json',
-    //             },
-    //             payload: JSON.stringify({messages: chatMessages})
-    //         })
-
-    //         eventSource.addEventListener('error', handleError);
-
-    //         eventSource.addEventListener('message', (e) => {
-    //             try {
-    //                 setIsLoading(false);
-    //                 if (e.data === '[DONE]') {
-    //                     const newChatMessages = [...chatMessages, {role: ChatCompletionResponseMessageRoleEnum.Assistant, content: answer}];
-    //                     setChatMessages(newChatMessages);
-    //                     setAnswer('');
-    //                     return;
-    //                 }
-
-    //                 const completionResponse = JSON.parse(e.data);
-    //                 const [{ delta }] = completionResponse.choices;
-
-    //                 if (delta.content) {
-    //                     const newAnswer = (answer ?? '') + delta.content;
-    //                 }
-    //             } catch (err) {
-    //                 handleError(err);
-    //             }
-    //         })
-    //         eventSource.stream();
-    //     }
-    // }
-
-    const handleError = (err:any) => {
-        setIsLoading(false);
-        setPrompt('');
-        setAnswer('');
-        console.log(err);
-    }
 
     const handlePromptChange = (event: React.ChangeEvent<HTMLInputElement>) => {
         setPrompt(event.target.value);
@@ -74,14 +21,14 @@ const Home = () => {
 
     const handleEnter = (event: React.KeyboardEvent<HTMLInputElement>) => {
         if (event.key === "Enter") {
-            handleClick(); // When Enter key is pressed, treat as if it was clicked 
+            props.handlePromptSubmit(prompt); // When Enter key is pressed, treat as if it was clicked 
             (event.target as HTMLInputElement).value = "";
         }
     }
 
     return (
         <div className="">
-            <div className="container pt-28 mb-16">
+            <div className="container pt-14 mb-16">
 
                 <div className="hero">
                     <h1 className="text-2xl text-opacity-80">Welcome to Cyber Sapiens</h1>
@@ -100,7 +47,6 @@ const Home = () => {
                         <input type="button" 
                             className="
                                 btn-grad
-                                
                                 bg-gradient-to-r 
                                 from-orange-500 from-10% via-amber-500 via-60% to-amber-400 to-90%
                                 absolute
@@ -110,13 +56,10 @@ const Home = () => {
                                 px-16
                                 h-full"
                             value="Learn"
-                            onClick={handleClick}
+                            onClick={() => props.handlePromptSubmit(prompt)}
                         />
                     </div>
-
                 </div>
-                
-                
             </div>
             
             <Footer />

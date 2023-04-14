@@ -9,6 +9,22 @@
 body {
   background-color: #fafafa;
 }
+
+.shadow {
+  box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+}
+
+.section-title {
+  font-weight: 500;
+}
+
+.response-card-table > tr {
+  margin: 0.5rem;
+}
+
+.response-card-table {
+  border-spacing: 20px;
+}
 /* 
 
 :root {
