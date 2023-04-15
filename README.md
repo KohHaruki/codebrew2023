@@ -5,6 +5,15 @@ At the heart of Learn Smart GPT is our belief that everyone deserves access to a
 ## What it does
 Our solution starts by prompting the user about the topics they want to learn. From there, our ChatGPT 3.5 powered solution generates a comprehensive overview of the chosen topic, coupled with real-life applications, and suggests prerequisite knowledge to explore. With just a few clicks, our users can delve into the details of any topic they're interested in, making learning both accessible and engaging. Finally, our solution generates a detailed study plan tailored to the user, taking into account their unique preferences and learning style. We aim to make the learning journey as seamless and efficient as possible, enabling users to achieve their learning goals with ease.
 
+## How to run our project
+1. Clone or download our repo
+1. Run `npm install` in the parent folder, the `client` folder, and the `server` folder
+1. Create a `.env` file inside the `server` folder with the following content: `OPEN_AI_API_KEY=INSERT_YOUR_API_KEY_HERE`
+1. Run `npm run dev` in the `client` folder, and run `npm run start` in the `server` folder. This launches the front-end website and the backend server
+1. Type in a topic you would like to explore, and click Learn. It will send the prompt to the backend. Note that you may have to wait around 10~20 seconds before the response manifests
+1. Once response is created, a card with the topic's overview will appear. You can scroll  Click "explore" to explore its prerequisites. Note that if your OpenAI account is on free trial, there is 3 prompts/min limit.
+1. Click the checkboxes of topics you are interested in, and click Generate Study Plan to generate your study plan.
+
 ## How we built it
 * To build the front-end, we chose React for its ease of learning and the opportunity for workshops during the hackathon.
 * We accelerated our styling process with TailwindCSS, which allowed us to create a polished and visually appealing interface.
