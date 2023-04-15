@@ -74,6 +74,36 @@ app.post("/prompt", async (req, res) => {
   
 });
 
+app.post('/studyplan', async (req, res) => {
+  const studyTopics = req.body.studyplan; // Gets studyplan
+  console.log(studyTopics);
+  const completePrompt = `Make a detailed study plan with the following topics: ${studyTopics}`
+
+  const promptResponse = await openai.createChatCompletion({
+    model: MODEL,
+    messages: [
+      {
+        role: "system",
+        content: "You are an expert study coach for university students. Give detailed advice, consider number of study hours, appropriate order to study the topics, study duration, study tips."
+      }, 
+      {
+        role: "user",
+        content: completePrompt,
+      }],
+    temperature: 0.5,
+    max_tokens: 1024,
+  });
+
+  console.log(promptResponse.data.choices[0].message);
+
+  try {
+    res.status(200).json({studyplan: promptResponse.data.choices[0].message.content});
+  } catch (error) {
+    console.log("Error:", error);
+    res.status(500).send("Failed to generate study plan");
+  }
+})
+
 app.listen(8080, () => {
   console.log("Listening on port 8080");
   console.log("OPEN_AI_API_KEY: ", process.env.OPEN_AI_API_KEY) // Make sure you have .env file with OPEN_AI_API_KEY

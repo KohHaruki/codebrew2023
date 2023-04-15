@@ -4,6 +4,7 @@ import { ResponseCardInfo } from "../components/ResponseCard"
 interface KnowledgeTreeProps {
     responseCards: Array<ResponseCardInfo>;
     handlePromptSubmit: (prompt: string) => void;
+    handleInterestedTopics: (interestedTopic: string, toAdd: boolean) => void;
 }
 
 const KnowledgeTree = (props: KnowledgeTreeProps) => {
@@ -19,6 +20,7 @@ const KnowledgeTree = (props: KnowledgeTreeProps) => {
                             application={responseCardProps.application}
                             prerequisites={responseCardProps.prerequisites}
                             handlePromptSubmit={props.handlePromptSubmit}
+                            handleInterestedTopics={props.handleInterestedTopics}
                             key={key}
                         />
                     )
