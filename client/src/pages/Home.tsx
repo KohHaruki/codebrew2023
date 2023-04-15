@@ -31,7 +31,7 @@ const Home = (props: HomeProps) => {
             <div className="container pt-14 mb-16">
 
                 <div className="hero">
-                    <h1 className="text-2xl text-opacity-80">Welcome to Cyber Sapiens</h1>
+                    <h1 className="text-2xl text-opacity-80">Welcome to Learn Smart GPT</h1>
                     <h1 className="text-6xl pt-4 pb-8">What do you want to learn?</h1>
 
                     <div className="prompt-input-wrapper relative">
