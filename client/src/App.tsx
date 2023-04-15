@@ -50,6 +50,7 @@ function App() {
       setInterestedTopics(newInterestedTopics);
     }
     console.log("interested topics:", interestedTopics);
+    console.log([...interestedTopics])
   }
 
   const handleGenerateStudyPlan = async () => {
@@ -58,7 +59,7 @@ function App() {
       headers: {
         'Content-Type': "application/json",
       },
-      body: JSON.stringify([...interestedTopics]),
+      body: JSON.stringify({studyplan: [...interestedTopics]}),
     })
 
     if (!res.ok) {
@@ -76,7 +77,7 @@ function App() {
     <div>
       <Home handleResponses={handleResponses} handlePromptSubmit={handlePromptSubmit}/>
       <KnowledgeTree responseCards={responses} handlePromptSubmit={handlePromptSubmit} handleInterestedTopics={handleInterestedTopics}/>
-      <StudyPlanArea interestedTopics={Array.from(interestedTopics)} handleGenerateStudyPlan={handleGenerateStudyPlan}/>
+      <StudyPlanArea interestedTopics={Array.from(interestedTopics)} handleGenerateStudyPlan={handleGenerateStudyPlan} studyplan={studyPlan}/>
     </div>
   )
 }

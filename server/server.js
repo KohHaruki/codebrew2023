@@ -77,6 +77,7 @@ app.post("/prompt", async (req, res) => {
 app.post('/studyplan', async (req, res) => {
   const studyTopics = req.body.studyplan; // Gets studyplan
   console.log(studyTopics);
+  const completePrompt = `Make a detailed study plan with the following topics: ${studyTopics}`
 
   const promptResponse = await openai.createChatCompletion({
     model: MODEL,
@@ -87,7 +88,7 @@ app.post('/studyplan', async (req, res) => {
       }, 
       {
         role: "user",
-        content: studyTopics,
+        content: completePrompt,
       }],
     temperature: 0.5,
     max_tokens: 1024,
